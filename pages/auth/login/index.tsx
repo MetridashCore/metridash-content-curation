@@ -9,7 +9,6 @@ import Link from "next/link";
 import { FaTwitter } from 'react-icons/fa';
 import { BsLinkedin,BsFacebook } from 'react-icons/bs';
 import { GrGoogle, } from 'react-icons/gr';
-import Image from "next/image";
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const providers = await getProviders();
 
