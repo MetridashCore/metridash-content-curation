@@ -4,7 +4,7 @@ interface Props {
   children: JSX.Element;
 }
 
-const Navbar = (props:Props) => {
+const HeaderMenu = (props:Props) => {
   const [active, setActive] = useState<string>("0");
 
   const handleClick = (index: number) => {
@@ -56,4 +56,4 @@ const Navbar = (props:Props) => {
   );
 };
 
-export default Navbar;
+export default HeaderMenu;
