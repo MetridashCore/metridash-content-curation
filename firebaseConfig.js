@@ -8,20 +8,26 @@ import { getRemoteConfig } from "firebase/remote-config";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDfQeV4byOlNw7J07ZU3jkybyKfzMWfx5A",
-  authDomain: "metridash-test.firebaseapp.com",
-  projectId: "metridash-test",
-  storageBucket: "metridash-test.appspot.com",
-  messagingSenderId: "496401816575",
-  appId: "1:496401816575:web:92edb1d51a8ba7ea9925ca",
-  measurementId: "G-Q294VLDYWH",
+  apiKey: "AIzaSyByB8GiLsVISPe1Nu_mtWX2JaiCyx9YyhM",
+  authDomain: "metridash-web.firebaseapp.com",
+  projectId: "metridash-web",
+  storageBucket: "metridash-web.appspot.com",
+  messagingSenderId: "977489432973",
+  appId: "1:977489432973:web:a56db742505b29a1d72dc4",
+  measurementId: "G-J5CXVGMQEN"
 };
 
-export const firebase = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
 let remoteConfigVar;
 if (typeof window !== "undefined") {
-  remoteConfigVar = getRemoteConfig(firebase);
+  remoteConfigVar = getRemoteConfig(app);
   remoteConfigVar.settings.minimumFetchIntervalMillis = 600000;
 }
-export const remoteConfig = remoteConfigVar;
+const remoteConfig = remoteConfigVar;
+
+
+const auth = getAuth(app);
+const database = getDatabase(app);
+
+export { auth, database, app, remoteConfig};
