@@ -2,6 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getRemoteConfig } from "firebase/remote-config";
+import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,7 +24,7 @@ const app = initializeApp(firebaseConfig);
 let remoteConfigVar;
 if (typeof window !== "undefined") {
   remoteConfigVar = getRemoteConfig(app);
-  remoteConfigVar.settings.minimumFetchIntervalMillis = 600000;
+  remoteConfigVar.settings.minimumFetchIntervalMillis = 100000;
 }
 const remoteConfig = remoteConfigVar;
 

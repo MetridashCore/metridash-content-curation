@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import { FirebaseParameters } from "@/constants/firebaseParameters";
+import { getConfigValue } from "@/services/firebase/remoteConfig";
+import React, { useEffect, useState } from "react";
 
 interface Props {
   children: JSX.Element;
 }
 
-const HeaderMenu = (props:Props) => {
+const HeaderMenu = (props: Props) => {
   const [active, setActive] = useState<string>("0");
+  const [showLogin, setShowLogin] = useState<boolean>(false);
+
+  useEffect(() => {
+    (async () => {
+      await getConfigValue(FirebaseParameters.SHOW_LOGIN, setShowLogin, true);
+    })();
+  }, []);
+
+  useEffect(() => {
+    console.log("HeaderMenu showlogin", showLogin);
+  }, [showLogin]);
 
   const handleClick = (index: number) => {
     setActive(index.toString());
@@ -49,6 +62,16 @@ const HeaderMenu = (props:Props) => {
           >
             Contact Us
           </li>
+          {showLogin && (
+            <li
+              className={`cursor-pointer mr-4 ${
+                active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
+              }`}
+              onClick={() => handleClick(4)}
+            >
+              Login
+            </li>
+          )}
         </ul>
       </div>
       <main>{props.children}</main>
